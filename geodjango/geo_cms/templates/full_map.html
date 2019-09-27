@@ -1,178 +1,104 @@
 <!DOCTYPE html>
 <html>
-<head>
-        {% load staticfiles %}
 
+<head>
+    {% load staticfiles %}
     <title>Full Screen Leaflet Map</title>
-    <meta charset="utf-8" />
     <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7/leaflet.css"/>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/" />
-
-    <style>
-        body {
-            padding: 0;
-            margin: 0;
-        }
-        html, body, #map {
-            height: 100%;
-            width: 100%;
-        }
-    </style>
+    <script src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js"></script>
+    <meta charset="utf-8" />
 </head>
+
+<style>
+    body {
+        padding: 0;
+        margin: 0;
+    }
+    html, body, #map {
+        height: 100%;
+        width: 100%;
+    }
+</style>
+
 <body>
-    
 
     <div id="map" style="position: absolute;"></div>
-
     <div class="panel panel-default" style="position:absolute;left:10px;top: 10px;z-index:3;">
-        <div class="panel-heading"><h4 style="text-align: center;">Map Filters</h2></div>
+        <div class="panel-heading">
+            <h4 style="text-align: center;">Map Filters</h4>
+        </div>
         <div class="panel-body">
             <form action="" method="post">
                 {% csrf_token %}
                 <h3 style="text-align: left; margin-left: 3vh; padding:1vh; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ form.visible_fields.0.label }}: {{ form.visible_fields.0 }}</h3>
                 <input type="submit" value="Submit" style = 'font-family: Manjari; margin-left: 4vh;'>
             </form>
-    
         </div>
-     </div>
-
-    <script
-        src="http://cdn.leafletjs.com/leaflet-0.7/leaflet.js">
-    </script>
-
-
+    </div>
 
     <script>
     
-    var map = L.map('map').setView([12.8797, 121.7740], 6);
+        var map = L.map('map').setView([12.8797, 121.7740], 6);
 
-    var CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-	    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-	    subdomains: 'abcd',
-	    maxZoom: 18
-    }).addTo(map); 
+        var CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            subdomains: 'abcd',
+            maxZoom: 18
+        }).addTo(map); 
 
-    var data = {
-        "type": "FeatureCollection",
-        "features": [
-        {% for obj in filter %}
-        {
-            "type": "Feature",
-            "properties": {
-                "School_Name": "{{ obj.school_nam }}",
-                "School_ID": "{{ obj.school_id }}",
-                "Region": "{{ obj.region }}",
-                "District": "{{ obj.district }}"
+        var data = {
+            "type": "FeatureCollection",
+            "features": [
+            {% for obj in filter %}
+            {
+                "type": "Feature",
+                "properties": {
+                    "School_Name": "{{ obj.school_nam }}",
+                    "School_ID": "{{ obj.school_id }}",
+                    "Region": "{{ obj.region }}",
+                    "District": "{{ obj.district }}"
+                },
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [{{ obj.longitude }}, {{ obj.latitude }}]
+                }
+            }{% if not loop.last %},{% endif %}
+            {% endfor %}
+            ]
+        };
+
+        var geojsonMarkerOptions = {
+            radius: 8,
+            fillColor: "#ff7800",
+            color: "#000",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0.8
+        };
+
+        var dataLayer = L.geoJson(data, {
+            onEachFeature: function(feature, layer) {
+                layer.bindPopup("<dl><dt><b>School Properties</b></dt>" +
+            "<dt>" + "School Name: " +
+            '<a href="' + feature.properties.School_ID + '/" style="font-size:15px;">' +
+                feature.properties.School_Name + 
+            '</a>' + "</dt>" +
+            "<dt>" + "Schoool ID: " + feature.properties.School_ID + "</dt>" + 
+            "<dt>" + "Region: " + feature.properties.Region + "</dt>" +
+            "<dt>" + "District: " + feature.properties.District + "</dt>" +
+            "</dl>");
             },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [{{ obj.longitude }}, {{ obj.latitude }}]
-            }
-        }{% if not loop.last %},{% endif %}
-        {% endfor %}
-        ]
-    };
+            pointToLayer: function (feature, latlng) {
+                return L.circleMarker(latlng, geojsonMarkerOptions);
+            },
+        });
 
-
-    // var markers = L.markerClusterGroup();
-
-
-
-var geojsonMarkerOptions = {
-    radius: 8,
-    fillColor: "#ff7800",
-    color: "#000",
-    weight: 1,
-    opacity: 1,
-    fillOpacity: 0.8
-};
-
-    var dataLayer = L.geoJson(data, {
-                onEachFeature: function(feature, layer) {
-                    layer.bindPopup("<dl><dt><b>School Properties</b></dt>" +
-                "<dt>" + "School Name: " +
-                '<a href="' + feature.properties.School_ID + '/" style="font-size:15px;">' +
-                    feature.properties.School_Name + 
-                '</a>' + "</dt>" +
-                "<dt>" + "Schoool ID: " + feature.properties.School_ID + "</dt>" + 
-                "<dt>" + "Region: " + feature.properties.Region + "</dt>" +
-                "<dt>" + "District: " + feature.properties.District + "</dt>" +
-                "</dl>");
-                },
-                pointToLayer: function (feature, latlng) {
-                    return L.circleMarker(latlng, geojsonMarkerOptions);
-                },
-            });
-
-    
-    // markers.addLayer(dataLayer);
-
-
-	map.addLayer(dataLayer);
-
-
+        map.addLayer(dataLayer);
     
     </script>
-
-    <!--
-    <script>
-
-    
-    var map = L.map('map').setView([12.8797, 121.7740], 6);
-
-    var CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-	attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-	subdomains: 'abcd',
-	maxZoom: 18
-    });
-    map.addLayer(CartoDB_Positron);
-    var data = {
-        "type": "FeatureCollection",
-        "features": [
-        {% for obj in filter.qs %}
-        {
-            "type": "Feature",
-            "properties": {
-                "School_Name": "{{ obj.school_name }}",
-                "School_ID": "{{ obj.school_id }}",
-                "Region": "{{ obj.region }}",
-                "District": "{{ obj.district }}"
-            },
-            "geometry": {
-                "type": "Point",
-                "coordinates": [{{ obj.longitude }}, {{ obj.latitude }}]
-            }
-        }{% if not loop.last %},{% endif %}
-        {% endfor %}
-        ]
-    };
-    var blackIcon = L.Icon.extend({
-        options: {
-            iconUrl: "{% static "myapp/marker-24.png" %}",
-            iconSize: [24,24]
-        }
-    });
-    var dataLayer = L.geoJson(data, {
-        pointToLayer: function(feature, latlng) {
-            return L.marker(latlng, {icon: new blackIcon()});
-        },
-        onEachFeature: function(feature, layer) {
-            layer.bindPopup("<dl><dt><b>School Properties</b></dt>" +
-                "<dt>" + "School Name: " +
-                '<a href="' + feature.properties.School_ID + '/" style="font-size:15px;">' +
-                    feature.properties.School_Name + 
-                '</a>' + "</dt>" +
-                "<dt>" + "Schoool ID: " + feature.properties.School_ID + "</dt>" + 
-                "<dt>" + "Region: " + feature.properties.Region + "</dt>" +
-                "<dt>" + "District: " + feature.properties.District + "</dt>" +
-                "</dl>"
-            );
-        }
-    });
-    map.addLayer(dataLayer);
-    </script>
-    -->
 
 </body>
+
 </html>

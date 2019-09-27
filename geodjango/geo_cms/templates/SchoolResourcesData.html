@@ -1,60 +1,53 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+<head>
     {% load staticfiles %}
-    <meta charset="utf-8">
     <title>CheckMySchool Data Portal</title>
-    <!--
-    <link rel="stylesheet" type="text/css" href="{% static "css/reset.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "css/style_here.css" %}">
-    -->
     <link href="https://fonts.googleapis.com/css?family=Roboto|Bitter|Lobster|Manjari|Schoolbell" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  </head>
+    <meta charset="utf-8">
+</head>
             
-  <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh; padding-bottom: 20px;">
-    <a href="https://www.checkmyschool.org"><img src="{% static "myapp/CMS Logo hi res.jpg" %}" style="float: left;" width="315vh", height="100vh"></a>
-    <ul style="height: 100%; display: flex; justify-content: flex-end; align-items: center; font-family: Manjari; height: 10vh;">
-      <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/" style="color: #002036; text-decoration: none; font-size: 20px;">Home</a></li>
-      <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/about/" style="color: #002036; text-decoration: none; font-size: 20px;">About</a></li>
-      <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/schools_list/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Profiles</a></li>
-      <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/full_map/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Map</a></li>
-      <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/IndexCalculator/"  style="color: #002036; text-decoration: none; font-size: 20px;">SNI Calculator</a></li>
-      <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/OpenData/"  style="color: #002036; text-decoration: none; font-size: 20px;" >Data</a></li>
-    </ul>
-  </section>
-      
-
 <body>
+
+    <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh; padding-bottom: 20px;">
+        <a href="https://www.checkmyschool.org"><img src="{% static "myapp/CMS Logo hi res.jpg" %}" style="float: left;" width="315vh", height="100vh"></a>
+        <ul style="height: 100%; display: flex; justify-content: flex-end; align-items: center; font-family: Manjari; height: 10vh;">
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/" style="color: #002036; text-decoration: none; font-size: 20px;">Home</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/about/" style="color: #002036; text-decoration: none; font-size: 20px;">About</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/schools_list/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Profiles</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/full_map/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Map</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/IndexCalculator/"  style="color: #002036; text-decoration: none; font-size: 20px;">SNI Calculator</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/OpenData/"  style="color: #002036; text-decoration: none; font-size: 20px;" >Data</a></li>
+        </ul>
+    </section>
     
-  <section style="height:800px; width: 100%;">
-    <div style="margin-left: 2vh; height: 30px; background-color: #ffffff; width:30%;  float:left;  border-right-color: cadetblue; border-right-width: 1px; border-right-style: solid;">
-      <h1> </h1>
-      <h3 style="text-align: left; margin-left: 1vh; font-size: 20px; font-weight: bold; font-family: Manjari;"> Metadata </h3>
-      <hr style="width:90%; margin-left: 1vh;">
-      <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Source:</b> <br> Philippine Department of Education <br> Enhanced Basic Education Information System </b></p>
-      <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Date Range:</b> <br> SY 2015 - 2016 <br> SY 2016 - 2017 <br> SY 2017 - 2018</p>
-      <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Citation:</b> <br> {{ school_id.0.division }}</p>
-      <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Number of Rows:</b> <br> {{ school_id.0.total_teac }}</p>
-      <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Date Last Updated:</b> <br> September 12, 2019 </p>
-      <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Output Format:</b> <br> CSV </p>      
-    </div>
-
-    <div style="margin-left: 2vh; height: 91vh; background-color: #ffffff; width:60%;  float: right;">
-      <h3 style="text-align: left; margin-left: 1vh; font-size: 20px; font-weight: bold; font-family: Manjari;"> Query & Download Dataset </h3>
-      <hr style="width:90%; margin-left: 1vh;">
-      <form action="" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit">
-      </form>
-    </div>
-
-  </section>
+    <section style="height:800px; width: 100%;">
+        <div style="margin-left: 2vh; height: 30px; background-color: #ffffff; width:30%;  float:left;  border-right-color: cadetblue; border-right-width: 1px; border-right-style: solid;">
+            <br>
+            <h3 style="text-align: left; margin-left: 1vh; font-size: 20px; font-weight: bold; font-family: Manjari;"> Metadata </h3>
+            <hr style="width:90%; margin-left: 1vh;">
+            <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Source:</b> <br> Philippine Department of Education <br> Enhanced Basic Education Information System </b></p>
+            <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Date Range:</b> <br> SY 2015 - 2016 <br> SY 2016 - 2017 <br> SY 2017 - 2018</p>
+            <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Citation:</b> <br> {{ school_id.0.division }}</p>
+            <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Number of Rows:</b> <br> {{ school_id.0.total_teac }}</p>
+            <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Date Last Updated:</b> <br> September 12, 2019 </p>
+            <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Output Format:</b> <br> CSV </p>      
+        </div>
+        <div style="margin-left: 2vh; height: 91vh; background-color: #ffffff; width:60%;  float: right;">
+            <h3 style="text-align: left; margin-left: 1vh; font-size: 20px; font-weight: bold; font-family: Manjari;"> Query & Download Dataset </h3>
+            <hr style="width:90%; margin-left: 1vh;">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{ form }}
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </section>
             
 </body>
 

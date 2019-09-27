@@ -1,90 +1,76 @@
-
-
 <!DOCTYPE html>
 <html>
 
 <head>
-  {% load staticfiles %}
-  {% load leaflet_tags %}
-  {% leaflet_js %}
-  {% leaflet_css %}
-  <script src="{% static 'leaflet-ajax/dist/leaflet.ajax.min.js' %}"></script>
-  <script src="{% static 'spin.js/spin.min.js' %}"></script>
-  <script src="{% static 'leaflet-spin/leaflet.spin.js' %}"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.Spin/1.1.0/leaflet.spin.js"></script>
-  <meta charset="utf-8">
-  <title>CheckMySchool Data Portal</title>
-  <!--
-  <link rel="stylesheet" type="text/css" href="{% static "css/reset.css" %}">
-  <link rel="stylesheet" type="text/css" href="{% static "css/style_here.css" %}">
-  -->
-  <link href="https://fonts.googleapis.com/css?family=Roboto|Bitter|Lobster|Manjari|Schoolbell" rel="stylesheet">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
-  <script src="https://code.highcharts.com/highcharts.src.js"></script>
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    {% load staticfiles %}
+    {% load leaflet_tags %}
+    {% leaflet_js %}
+    {% leaflet_css %}
+    <title>CheckMySchool Data Portal</title>
+    <script src="{% static 'leaflet-ajax/dist/leaflet.ajax.min.js' %}"></script>
+    <script src="{% static 'spin.js/spin.min.js' %}"></script>
+    <script src="{% static 'leaflet-spin/leaflet.spin.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.Spin/1.1.0/leaflet.spin.js"></script>
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Bitter|Lobster|Manjari|Schoolbell" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta charset="utf-8">
 </head>
 
 <body style="background-clip: #ffffff;">
 
-  <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh;">
-    <a href="https://www.checkmyschool.org"><img src="{% static "myapp/CMS Logo hi res.jpg" %}" style="float: left;" width="315vh", height="100vh"></a>
-    <ul style="height: 100%; display: flex; justify-content: flex-end; align-items: center; font-family: Manjari; height: 10vh;">
-      <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/" style="color: #002036; text-decoration: none; font-size: 20px;">Home</a></li>
-      <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/about/" style="color: #002036; text-decoration: none; font-size: 20px;">About</a></li>
-      <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/schools_list/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Profiles</a></li>
-      <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/full_map/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Map</a></li>
-      <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/IndexCalculator/"  style="color: #002036; text-decoration: none; font-size: 20px;">SNI Calculator</a></li>
-      <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/OpenData/"  style="color: #002036; text-decoration: none; font-size: 20px;" >Data</a></li>
-    </ul>
-  </section>
-
+    <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh;">
+        <a href="https://www.checkmyschool.org"><img src="{% static "myapp/CMS Logo hi res.jpg" %}" style="float: left;" width="315vh", height="100vh"></a>
+        <ul style="height: 100%; display: flex; justify-content: flex-end; align-items: center; font-family: Manjari; height: 10vh;">
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/" style="color: #002036; text-decoration: none; font-size: 20px;">Home</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/about/" style="color: #002036; text-decoration: none; font-size: 20px;">About</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/schools_list/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Profiles</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/full_map/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Map</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/IndexCalculator/"  style="color: #002036; text-decoration: none; font-size: 20px;">SNI Calculator</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/OpenData/"  style="color: #002036; text-decoration: none; font-size: 20px;" >Data</a></li>
+        </ul>
+    </section>
 
     <main style="height:700px; background-color: #002036;">
-      <div class = "row">
-        <div class="col">
-          <!--
-          <img id="desktop" src="{% static "myapp/index_school_clip.png" %}" style="padding-top: 140px;" width="30px"/>
-          -->
+        <div class = "row">
+            <div class="col"></div>
+            <div class="col">
+                <h1 style="text-align: center; padding-top: 250px; font-family: Schoolbell; font-size: 75px; color: #ffffff;">
+                    Welcome to the CheckMySchool Open Data Portal
+                </h1>
+            </div>
         </div>
-        <div class="col">
-          <h1 style="text-align: center; padding-top: 250px; font-family: Schoolbell; font-size: 75px; color: #ffffff;">
-            Welcome to the CheckMySchool Open Data Portal
-          </h1>
-        </div>
-      </div>
     </main>
 
     <section id="SNI" style="background-color: #ffffff; width:100%; margin: 0 auto; height:700px;">
-      <div class = "row" style="display: flex; justify-content: space-around;">
-        <h3 style="color:black; font-weight: bold;  font-family: Manjari;">School Neediness Index</h3>
-      </div>
-      <div class = "row" style="display: flex; justify-content: space-around;">
-        <div class = "col" style="width: 40%;">
-          <p style="color: black;  font-family: Manjari; font-size: 20px; margin-top: 140px;">
-            The School Neediness Index Map identifies which among the 44,751 public elementary and secondary schools in the 
-            country are in need of resources. The index consists of seven variables: remoteness, percentage of students 
-            receiving conditional cash transfers, water access, internet access, electricity access, student-teacher ratio 
-            and student-classroom ratio.
-          <p>
+        <div class = "row" style="display: flex; justify-content: space-around;">
+            <h3 style="color:black; font-weight: bold;  font-family: Manjari;">School Neediness Index</h3>
         </div>
+        <div class = "row" style="display: flex; justify-content: space-around;">
+            <div class = "col" style="width: 40%;">
+                <p style="color: black;  font-family: Manjari; font-size: 20px; margin-top: 140px;">
+                    The School Neediness Index Map identifies which among the 44,751 public elementary and secondary schools in the 
+                    country are in need of resources. The index consists of seven variables: remoteness, percentage of students 
+                    receiving conditional cash transfers, water access, internet access, electricity access, student-teacher ratio 
+                    and student-classroom ratio.
+                <p>
+            </div>
         <div class = "col" style="width: 40%;">
-          <div id="sni_map" style="height: 600px; "></div>
-          <script>
+            <div id="sni_map" style="height: 600px; "></div>
+                <script>
 
-              function map_init_basic (map, options) {
-        
-                    var CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-                      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-                      subdomains: 'abcd',
-                      maxZoom: 18
-                    }).addTo(map); 
-        
-        
-        
+                    function map_init_basic (map, options) {
+                        var CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                            subdomains: 'abcd',
+                            maxZoom: 18
+                        }).addTo(map); 
+    
                     function RegStyle(feature) {
                         var colorToUse;
                         var sni = feature.properties.shi_scr;
@@ -102,7 +88,7 @@
                           "opacity": 1,
                           'fillOpacity': 1
                         };
-                      }
+                    }
         
                     var geojsonRegionsLayer = new L.GeoJSON.AJAX("{% url 'RegionSimplePolys' %}", {
                         onEachFeature:function(feature, layer) {
@@ -111,107 +97,107 @@
                         style: RegStyle
                     });
                     geojsonRegionsLayer.addTo(map);
-                }
-              </script>
-        
+                    }
+
+                </script>
+
               {% leaflet_map "sni_map" callback="window.map_init_basic"%}
-        </div>
+              
+            </div>
       </div>
     </section>
 
     <section id="SchoolSpending" style="background-color: #00365a; width:100%; margin: 0 auto; height:700px;">
-      <div class = "row" style="display: flex; justify-content: space-around;">
-        <h3 style="color:#ffffff; font-weight: bold;  font-family: Manjari;">School Spending</h3>
-      </div>
-      <div class = "row bottom">
-        <div class = "col"  style="width: 40%; float: right;">
-          <p style="color: #ffffff;  font-family: Manjari; font-size: 20px; margin-top: 140px; margin-right: 50px">
-            The School Neediness Index Map identifies which among the 44,751 public elementary and secondary schools 
-            in the country are in need of resources. The index consists of seven variables: remoteness, percentage of 
-            students receiving conditional cash transfers, water access, internet access, electricity access, 
-            student-teacher ratio and student-classroom ratio.
-          <p>
+        <div class = "row" style="display: flex; justify-content: space-around;">
+            <h3 style="color:#ffffff; font-weight: bold;  font-family: Manjari;">School Spending</h3>
         </div>
-        <div class = "col" style="width: 30vw; float: left;">
-          <p style="color:black;"></p>
+        <div class = "row bottom">
+            <div class = "col"  style="width: 40%; float: right;">
+                <p style="color: #ffffff;  font-family: Manjari; font-size: 20px; margin-top: 140px; margin-right: 50px">
+                    The School Neediness Index Map identifies which among the 44,751 public elementary and secondary schools 
+                    in the country are in need of resources. The index consists of seven variables: remoteness, percentage of 
+                    students receiving conditional cash transfers, water access, internet access, electricity access, 
+                    student-teacher ratio and student-classroom ratio.
+                <p>
+            </div>
+            <div class = "col" style="width: 30vw; float: left;">
+                <p style="color:black;"></p>
+            </div>
         </div>
-      </div>
     </section>
 
     <section id="PWD" style="background-color: #ffffff; width:100%;  margin: 0 auto; height:900px;">
-      <div class = "row"  style="display: flex; justify-content: space-around;">
-        <h3 style="color:black; font-weight: bold; font-family: Manjari;">Students with Disabilities</3>
-      </div>
-      <div id="pwdColumn" style="float: right; width:50%; height:60vh; margin-top: 5vh; margin-left: 5vh;"></div>
-      <div style="float: left; width: 40%;">
-        <p style="color: black; font-family: Manjari; font-size: 20px; margin-top: 140px; margin-left: 40px;">
-          2,108 schools had students with disabilities attending in 2017. 16 of those schools are classified as Remote
-          or Extremely Remote. 
-        </p>
-      </div>
+        <div class = "row"  style="display: flex; justify-content: space-around;">
+            <h3 style="color:black; font-weight: bold; font-family: Manjari;">Students with Disabilities</3>
+        </div>
+        <div id="pwdColumn" style="float: right; width:50%; height:60vh; margin-top: 5vh; margin-left: 5vh;"></div>
+        <div style="float: left; width: 40%;">
+            <p style="color: black; font-family: Manjari; font-size: 20px; margin-top: 140px; margin-left: 40px;">
+            2,108 schools had students with disabilities attending in 2017. 16 of those schools are classified as Remote
+            or Extremely Remote. 
+            </p>
+        </div>
     </section>
 
     <footer style="background-color: #002036; height:250px; height: 250px; padding: 10px; display: flex; flex-direction: column; justify-content: space-around;">
-      <div style=" margin-left: auto; margin-right: auto;">
-        <a href="https://github.com/heatherbaier/cms_django" style="color: white; padding: 20px 30px;"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
-        <a href="https://www.youtube.com/user/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-youtube fa-3x" aria-hidden="true"></i></a>
-        <a href="https://twitter.com/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
-        <a href="https://www.facebook.com/CheckMySchool/" style="color: white; padding: 20px 30px;"><i class="fa fa-facebook fa-3x" aria-hidden="true"></i></a>
-        <a href="info@checkmyschool.org" style="color: white; padding: 20px 30px;"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
-      </div>
-      <h4 style="color:white; font-family: Manjari; margin-left: auto; margin-right: auto; text-align: center;">
-        ANSA-EAP Satellite Office, 3rd Floor Mansi Bldg, 337 Katipunan Avenue Loyola <br>
-        Heights, Quezon City, Metro Manila Philippines 1108
-      </h4>
+        <div style=" margin-left: auto; margin-right: auto;">
+            <a href="https://github.com/heatherbaier/cms_django" style="color: white; padding: 20px 30px;"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
+            <a href="https://www.youtube.com/user/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-youtube fa-3x" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/CheckMySchool/" style="color: white; padding: 20px 30px;"><i class="fa fa-facebook fa-3x" aria-hidden="true"></i></a>
+            <a href="info@checkmyschool.org" style="color: white; padding: 20px 30px;"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
+        </div>
+        <h4 style="color:white; font-family: Manjari; margin-left: auto; margin-right: auto; text-align: center;">
+            ANSA-EAP Satellite Office, 3rd Floor Mansi Bldg, 337 Katipunan Avenue Loyola <br>
+            Heights, Quezon City, Metro Manila Philippines 1108
+        </h4>
     </footer>
 
     <script>
                 
-      Highcharts.chart('pwdColumn', {
-          chart: {
-              type: 'column'
-          },
-          title: {
-              text: 'Most frequent student disabilities'
-          },
-          xAxis: {
-              categories: ['Learning Impairment', 'Difficulty Hearing Manifestation', 'Special Health Problem/Chronic Illness', 'Difficulty Communicating Manifestation', 'Visual Impairment Disorder', 'Difficulty Seeing Manifestation', 'Difficulty Remembering, Concentrating, Paying Attention and Understanding based on Manifestation'],
-              title: {
-                  text: 'Disability'
-              }
-          },
-          tooltip: {
-              valueSuffix: ' students'
-          },
-          yAxis: {
-              min: 0,
-              title: {
-                  text: 'Number of Students',
-                  align: 'middle'
-              },
-              labels: {
-                  overflow: 'justify'
-              }
-          },
-          plotOptions: {
-              bar: {
-                  dataLabels: {
-                      enabled: true
-                  }
-              }
-          },
-          credits: {
-              enabled: false
-          },
-          series: [{
-              name: 'Number of Students',
-              data: [3510, 4950, 5281, 5738, 9026, 28536, 30901]
-          }]
-      });
+        Highcharts.chart('pwdColumn', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Most frequent student disabilities'
+            },
+            xAxis: {
+                categories: ['Learning Impairment', 'Difficulty Hearing Manifestation', 'Special Health Problem/Chronic Illness', 'Difficulty Communicating Manifestation', 'Visual Impairment Disorder', 'Difficulty Seeing Manifestation', 'Difficulty Remembering, Concentrating, Paying Attention and Understanding based on Manifestation'],
+                title: {
+                    text: 'Disability'
+                }
+            },
+            tooltip: {
+                valueSuffix: ' students'
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Number of Students',
+                    align: 'middle'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+            plotOptions: {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            },
+            credits: {
+                enabled: false
+            },
+            series: [{
+                name: 'Number of Students',
+                data: [3510, 4950, 5281, 5738, 9026, 28536, 30901]
+            }]
+        });
       
       </script>
-
-
 
 </body>
 

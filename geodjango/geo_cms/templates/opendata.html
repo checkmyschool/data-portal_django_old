@@ -1,100 +1,89 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+<head>
     {% load staticfiles %}
-    <meta charset="utf-8">
     <title>CheckMySchool Data Portal</title>
-    <!--
-    <link rel="stylesheet" type="text/css" href="{% static "css/reset.css" %}">
-    <link rel="stylesheet" type="text/css" href="{% static "css/style_here.css" %}">
-    -->    
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto|Bitter|Lobster|Manjari|Schoolbell" rel="stylesheet">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  </head>
-            
+    <meta charset="utf-8">
+</head>
+        
+<body style="background-color: #ffffff;">
 
-
-
-  <body style="background-color: #ffffff;">
-
-
-        <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh;">
-                <a href="https://www.checkmyschool.org"><img src="{% static "myapp/CMS Logo hi res.jpg" %}" style="float: left;" width="315vh", height="100vh"></a>
-                <ul style="height: 100%; display: flex; justify-content: flex-end; align-items: center; font-family: Manjari; height: 10vh;">
-                  <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/" style="color: #002036; text-decoration: none; font-size: 20px;">Home</a></li>
-                  <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/about/" style="color: #002036; text-decoration: none; font-size: 20px;">About</a></li>
-                  <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/schools_list/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Profiles</a></li>
-                  <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/school_map/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Map</a></li>
-                  <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/IndexCalculator/"  style="color: #002036; text-decoration: none; font-size: 20px;">SNI Calculator</a></li>
-                  <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/OpenData/"  style="color: #002036; text-decoration: none; font-size: 20px;" >Data</a></li>
-                </ul>
-              </section>
+    <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh;">
+        <a href="https://www.checkmyschool.org"><img src="{% static "myapp/CMS Logo hi res.jpg" %}" style="float: left;" width="315vh", height="100vh"></a>
+        <ul style="height: 100%; display: flex; justify-content: flex-end; align-items: center; font-family: Manjari; height: 10vh;">
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/" style="color: #002036; text-decoration: none; font-size: 20px;">Home</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/about/" style="color: #002036; text-decoration: none; font-size: 20px;">About</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/schools_list/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Profiles</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/school_map/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Map</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/IndexCalculator/"  style="color: #002036; text-decoration: none; font-size: 20px;">SNI Calculator</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/OpenData/"  style="color: #002036; text-decoration: none; font-size: 20px;" >Data</a></li>
+        </ul>
+    </section>
 
     <section style="height: 700px; background-color: #002036; color: #ffffff;">
-      <h1 style="text-align: center; padding-top: 250px; font-family: Schoolbell; font-size: 75px; color: #ffffff;">Open Data</h1>
+        <h1 style="text-align: center; padding-top: 250px; font-family: Schoolbell; font-size: 75px; color: #ffffff;">Open Data</h1>
     </section>
 
     <section style="background-color: #ffffff; height: 400px; width: 100%; margin: auto; background-color: white; text-align: center;">
-      <p style="font-size: 20px; width:100vh; margin-left: auto; margin-right: auto; text-align: center; font-family: Manjari; padding-top: 100px;">
-          CheckMySchool has been collecting data on the Philippine Education sector in partnershp with the Philipinne Department of Education.
-          Choose a theme below to view and download related data. 
-      </p>      
+        <p style="font-size: 20px; width:100vh; margin-left: auto; margin-right: auto; text-align: center; font-family: Manjari; padding-top: 100px;">
+            CheckMySchool has been collecting data on the Philippine Education sector in partnershp with the Philipinne Department of Education.
+            Choose a theme below to view and download related data. 
+        </p>      
     </section>
 
     <section id="themes" style="background-color: #ffffff; width:100%; margin: 0 auto; height:300px;">
-            <div class = "row" style="display: flex; justify-content: space-around; height:700px; width: 100%;">
-                <div style="width: 30%; height: 250px; background-color: #00365a; color: #ffffff">
-                    <a href="SchoolResourcesData"><h1 style="font-family: Manjari; text-align: center; font-size: 25px"><u>School Resources</u></h1></a>
-                    <p style="font-family: Manjari; text-align: center; font-size: 16px; margin: 10px;">Browse data about school accessibility, socio-economic conditions of students, 
-                        access to resources such as water, internet and electricity, classroom availability and more.
-                    </p>
-                </div>
-                <div style="width: 30%; height: 250px; background-color: #00365a; color: #ffffff">
-                        <h1 style="font-family: Manjari; text-align: center; font-size: 25px"><u>School Spending</u></h1>
-                        <p style="font-family: Manjari; text-align: center; font-size: 16px; margin: 10px;">i honestly have no idea what this data is about</p>
-                    </div>
-                <div style="width: 30%; height: 250px; background-color: #00365a; color: #ffffff">
-                    <h1 style="font-family: Manjari; text-align: center; font-size: 25px"><u>Students with Disabilities</u></h1>
-                    <p style="font-family: Manjari; text-align: center; font-size: 16px; margin: 10px;">Over 2,000 public schools have students with disabilities enrolled.</p>
-                </div>
+        <div class = "row" style="display: flex; justify-content: space-around; height:700px; width: 100%;">
+            <div style="width: 30%; height: 250px; background-color: #00365a; color: #ffffff">
+                <a href="SchoolResourcesData"><h1 style="font-family: Manjari; text-align: center; font-size: 25px"><u>School Resources</u></h1></a>
+                <p style="font-family: Manjari; text-align: center; font-size: 16px; margin: 10px;">Browse data about school accessibility, socio-economic conditions of students, 
+                    access to resources such as water, internet and electricity, classroom availability and more.
+                </p>
             </div>
+            <div style="width: 30%; height: 250px; background-color: #00365a; color: #ffffff">
+                <h1 style="font-family: Manjari; text-align: center; font-size: 25px"><u>School Spending</u></h1>
+                <p style="font-family: Manjari; text-align: center; font-size: 16px; margin: 10px;">i honestly have no idea what this data is about</p>
+            </div>
+            <div style="width: 30%; height: 250px; background-color: #00365a; color: #ffffff">
+                <h1 style="font-family: Manjari; text-align: center; font-size: 25px"><u>Students with Disabilities</u></h1>
+                <p style="font-family: Manjari; text-align: center; font-size: 16px; margin: 10px;">Over 2,000 public schools have students with disabilities enrolled.</p>
+            </div>
+        </div>
     </section>
 
     <section id="themes" style="background-color: #ffffff; width:100%; margin: 0 auto; height:500px;">
-            <div class = "row" style="display: flex; justify-content: space-around; height:700px; width: 100%;">
-                <div style="width: 30%; height: 250px; background-color: #00365a; color: #ffffff">
-                    <a href = "SpecialEducationFund"><h1 style="font-family: Manjari; text-align: center; font-size: 25px"><u>Special Education Fund</u></h1></a>
-                    <p style="font-family: Manjari; text-align: center; font-size: 16px; margin: 10px;">i honestly have no idea what this data is about</p>
-                </div>
-                <div style="width: 30%; height: 250px; background-color: #00365a; color: #ffffff">
-                        <h1 style="font-family: Manjari; text-align: center; font-size: 25px"><u>Alternative Learning System</u></h1>
-                        <p style="font-family: Manjari; text-align: center; font-size: 16px; margin: 10px;">i honestly have no idea what this data is about</p>
-                    </div>
-                <div style="width: 30%; height: 250px; background-color: #00365a; color: #ffffff"></div>
+        <div class = "row" style="display: flex; justify-content: space-around; height:700px; width: 100%;">
+            <div style="width: 30%; height: 250px; background-color: #00365a; color: #ffffff">
+                <a href = "SpecialEducationFund"><h1 style="font-family: Manjari; text-align: center; font-size: 25px"><u>Special Education Fund</u></h1></a>
+                <p style="font-family: Manjari; text-align: center; font-size: 16px; margin: 10px;">i honestly have no idea what this data is about</p>
             </div>
+            <div style="width: 30%; height: 250px; background-color: #00365a; color: #ffffff">
+                <h1 style="font-family: Manjari; text-align: center; font-size: 25px"><u>Alternative Learning System</u></h1>
+                <p style="font-family: Manjari; text-align: center; font-size: 16px; margin: 10px;">i honestly have no idea what this data is about</p>
+            </div>
+            <div style="width: 30%; height: 250px; background-color: #00365a; color: #ffffff"></div>
+        </div>
     </section>
 
-
-
     <footer style="background-color: #002036; height:250px; height: 250px; padding: 10px; display: flex; flex-direction: column; justify-content: space-around;">
-      <div style=" margin-left: auto; margin-right: auto;">
-        <a href="https://github.com/heatherbaier/cms_django" style="color: white; padding: 20px 30px;"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
-        <a href="https://www.youtube.com/user/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-youtube fa-3x" aria-hidden="true"></i></a>
-        <a href="https://twitter.com/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
-        <a href="https://www.facebook.com/CheckMySchool/" style="color: white; padding: 20px 30px;"><i class="fa fa-facebook fa-3x" aria-hidden="true"></i></a>
-        <a href="info@checkmyschool.org" style="color: white; padding: 20px 30px;"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
-      </div>
-      <h4 style="color:white; font-family: Manjari; margin-left: auto; margin-right: auto; text-align: center;">
-        ANSA-EAP Satellite Office, 3rd Floor Mansi Bldg, 337 Katipunan Avenue Loyola <br>
-        Heights, Quezon City, Metro Manila Philippines 1108
-      </h4>
+        <div style=" margin-left: auto; margin-right: auto;">
+            <a href="https://github.com/heatherbaier/cms_django" style="color: white; padding: 20px 30px;"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
+            <a href="https://www.youtube.com/user/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-youtube fa-3x" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/CheckMySchool/" style="color: white; padding: 20px 30px;"><i class="fa fa-facebook fa-3x" aria-hidden="true"></i></a>
+            <a href="info@checkmyschool.org" style="color: white; padding: 20px 30px;"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
+        </div>
+        <h4 style="color:white; font-family: Manjari; margin-left: auto; margin-right: auto; text-align: center;">
+            ANSA-EAP Satellite Office, 3rd Floor Mansi Bldg, 337 Katipunan Avenue Loyola <br>
+            Heights, Quezon City, Metro Manila Philippines 1108
+        </h4>
     </footer>
   
-
-    </body>
+</body>
 
 </html>

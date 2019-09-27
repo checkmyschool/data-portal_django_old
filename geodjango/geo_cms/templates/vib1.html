@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-  <head>
+<head>
     {% load staticfiles %}
     <meta charset="utf-8">
     <title>CheckMySchool Data Portal</title>
@@ -13,9 +13,9 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-  </head>
+</head>
 
-  <body>
+<body>
 
     <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh;">
         <a href="https://www.checkmyschool.org"><img src="{% static "myapp/CMS Logo hi res.jpg" %}" style="float: left;" width="315vh", height="100vh"></a>
@@ -81,67 +81,64 @@
         <div class = "row" style="display: flex; justify-content: space-around; height:700px; width: 100%;">
             <div style="width: 45%; height: 250px; background-color: #ffffff">
                 <h2 style="font-family: Manjari; text-align: center;">The Mean of the Index is: {{ mean.final_index__avg }} </h2>
-                    <h2 style="font-family: Manjari; text-align: center;">The Median of the Index is: {{ mean.final_index__avg }}</h2>
-                    <h2 style="font-family: Manjari; text-align: center;">The Standard Deviation of the Index is: {{ mean.final_index__avg }}</h2>
-                </div>
+                <h2 style="font-family: Manjari; text-align: center;">The Median of the Index is: {{ mean.final_index__avg }}</h2>
+                <h2 style="font-family: Manjari; text-align: center;">The Standard Deviation of the Index is: {{ mean.final_index__avg }}</h2>
+            </div>
             <div id = 'sni_map' style="width: 45%; height: 700px;"></div>
             <script>
-                    var map = L.map('sni_map').setView([12.8797, 121.7740], 6);
-            
-                    var CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
-                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-                        subdomains: 'abcd',
-                        maxZoom: 18
-                    });
-                    
-                    map.addLayer(CartoDB_Positron);
-            
-                    var data = {
-                        "type": "FeatureCollection",
-                        "features": [
-                        {% for obj in top %}
-                        {
-                            "type": "Feature",
-                            "properties": {
-                                "School_Name": "{{ obj.school_nam }}",
-                                "School_ID": "{{ obj.school_id }}",
-                                "Region": "{{ ob.region }}",
-                                "Division": "{{ obj.division }}",
-                                "District": "{{ obj.district }}",
-                                "SchoolNeedinessIndex": "{{ obj.final_index }}"
-            
-                            },
-                            "geometry": {
-                                "type": "Point",
-                                "coordinates": [{{ obj.longitude }}, {{ obj.latitude }}]
+                var map = L.map('sni_map').setView([12.8797, 121.7740], 6);
+        
+                var CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                    subdomains: 'abcd',
+                    maxZoom: 18
+                });
+                
+                map.addLayer(CartoDB_Positron);
+        
+                var data = {
+                    "type": "FeatureCollection",
+                    "features": [
+                    {% for obj in top %}
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "School_Name": "{{ obj.school_nam }}",
+                            "School_ID": "{{ obj.school_id }}",
+                            "Region": "{{ ob.region }}",
+                            "Division": "{{ obj.division }}",
+                            "District": "{{ obj.district }}",
+                            "SchoolNeedinessIndex": "{{ obj.final_index }}"
+        
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [{{ obj.longitude }}, {{ obj.latitude }}]
+                        }
+                    } {% if not loop.last %},{% endif %}
+                    {% endfor %}
+                    ]
+                };
+        
+                    var dataLayer = L.geoJson(data, {
+                            onEachFeature: function(feature, layer) {
+                                layer.bindPopup("<dl><dt><b>School Properties</b></dt>" +
+                            "<dt>" + "School Name: " + feature.properties.School_Name + "</dt>" +
+                            "<dt>" + "Schoool ID: " + feature.properties.School_ID + "</dt>" + 
+                            "<dt>" + "Region: " + feature.properties.Region + "</dt>" +
+                            "<dt>" + "District: " + feature.properties.District + "</dt>" +
+                            "<dt>" + "School Neediness Index: " + feature.properties.SchoolNeedinessIndex + "</dt>" +
+        
+                            "</dl>");
                             }
-                        } {% if not loop.last %},{% endif %}
-                        {% endfor %}
-                        ]
-                    };
-            
-                        var dataLayer = L.geoJson(data, {
-                                onEachFeature: function(feature, layer) {
-                                    layer.bindPopup("<dl><dt><b>School Properties</b></dt>" +
-                                "<dt>" + "School Name: " + feature.properties.School_Name + "</dt>" +
-                                "<dt>" + "Schoool ID: " + feature.properties.School_ID + "</dt>" + 
-                                "<dt>" + "Region: " + feature.properties.Region + "</dt>" +
-                                "<dt>" + "District: " + feature.properties.District + "</dt>" +
-                                "<dt>" + "School Neediness Index: " + feature.properties.SchoolNeedinessIndex + "</dt>" +
-            
-                                "</dl>");
-                                }
-                            });
-            
-                    map.addLayer(dataLayer);
-            
-                </script>
+                        });
+        
+                map.addLayer(dataLayer);
+            </script>
         </div>
     </section>
 
-
-
-<footer style="background-color: #002036; height:250px; height: 250px; padding: 10px; display: flex; flex-direction: column; justify-content: space-around; width: 100%;">
+    <footer style="background-color: #002036; height:250px; height: 250px; padding: 10px; display: flex; flex-direction: column; justify-content: space-around; width: 100%;">
         <div style=" margin-left: auto; margin-right: auto;">
             <a href="https://github.com/heatherbaier/cms_django" style="color: white; padding: 20px 30px;"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
             <a href="https://www.youtube.com/user/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-youtube fa-3x" aria-hidden="true"></i></a>
