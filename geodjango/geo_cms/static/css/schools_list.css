@@ -1,0 +1,57 @@
+
+  .logo {
+    text-align: left;
+    width: 50vw;
+  }
+  
+  nav {
+    width: 60vw;
+    padding: 0 2vh;
+  }
+  
+  #logo {
+    padding: 2vh;
+    width: 50%;
+  }
+
+
+.page-header {
+    background-color: #002036;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+    display: flex;
+    height: 20vh;
+    padding: 2vh;
+}
+
+
+
+.content {
+    margin-left: 40px;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Roboto', sans-serif;
+}
+
+.top-menu, .top-menu:hover, .top-menu:visited {
+    color: #ffffff;
+    float: right;
+    font-size: 26pt;
+    margin-right: 20px;
+}
+
+
+  .column {
+    float: left;
+  }
+  
+  .left {
+    width: 25%;
+    margin-left: 20px;
+    padding: 20px;
+  }
+  
+  .right {
+    width: 75%;
+  }

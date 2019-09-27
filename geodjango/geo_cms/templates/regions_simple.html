@@ -1,0 +1,39 @@
+<html>
+{% load static %}
+{% load leaflet_tags %}
+    <head>
+        {% leaflet_js %}
+        {% leaflet_css %}
+        <style media="screen">
+            #poland { width:50%; height:50% }
+        </style>
+        <script src="{% static 'leaflet-ajax/dist/leaflet.ajax.min.js' %}"></script>
+        <script src="{% static 'spin.js/spin.min.js' %}"></script>
+        <script src="{% static 'leaflet-spin/leaflet.spin.js' %}"></script>
+
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-ajax/2.1.0/leaflet.ajax.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/spin.js/2.3.2/spin.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.Spin/1.1.0/leaflet.spin.js"></script>
+
+        
+    </head>
+    <body>
+
+            <script type="text/javascript">
+
+                function map_init_basic (map, options) {
+
+                      var geojsonRegionsLayer = new L.GeoJSON.AJAX("{% url 'RegionSimplePolys' %}", {
+                          onEachFeature:function(feature, layer) {
+                              layer.bindPopup(feature.properties.regn_nm.toString());
+                          }
+                      });
+                      geojsonRegionsLayer.addTo(map);
+                  }
+
+             </script>
+
+        {% leaflet_map "poland" callback="window.map_init_basic"%}
+    </body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <title>CheckMySchool Data Portal</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Bitter|Lobster|Manjari|Schoolbell" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  </head>
+
+  <body>
+
+    <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh;">
+        <a href="https://www.checkmyschool.org"><img src="{% static "myapp/CMS Logo hi res.jpg" %}" style="float: left;" width="315vh", height="100vh"></a>
+        <ul style="height: 100%; display: flex; justify-content: flex-end; align-items: center; font-family: Manjari; height: 10vh;">
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/" style="color: #002036; text-decoration: none; font-size: 20px;">Home</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/about/" style="color: #002036; text-decoration: none; font-size: 20px;">About</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/schools_list/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Profiles</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/full_map/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Map</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/IndexCalculator/"  style="color: #002036; text-decoration: none; font-size: 20px;">SNI Calculator</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/OpenData/"  style="color: #002036; text-decoration: none; font-size: 20px;" >Data</a></li>
+        </ul>
+    </section>
+
+    <main style="height: 800px; background-color: #ffffff;">
+        <div class="row" style="display: flex; justify-content: space-around; height:800px; width: 100%;">
+            <div style="width: 90%; height: 650px; background-color: #002036;">
+                <h1 style="font-family: Manjari; text-align: center; font-size: 35px; color: #ffffff;">School Neediness Index Calculator</h1>
+                <form method=post action="" style="color:black; font-family: Manjari;">{% csrf_token %}
+                    <h3 style="color: #ffffff; padding-right: 20px; font-family: Manjari; text-align: center;">Choose a Geographic Breakdown:</h3> 
+                    <h3 style="font-family: Manjari; text-align: center;">{{ form.visible_fields.0 }}</h3>
+                    <div class = "row" style="display: flex; justify-content: space-around; height:400px; width: 100%;">
+                        <div style="width: 30%; height: 350px; background-color: #97ACBE;">
+                            <h1 style="font-family: Manjari; text-align: center; font-size: 35px">Accessibility</h1>
+                            <ul>
+                                <li style=" padding: 10px;"> {{ form.visible_fields.1.label }}: {{ form.visible_fields.1 }}</li>
+                                <li style=" padding: 10px;">{{ form.visible_fields.2.label }}: {{ form.visible_fields.2 }}</li>
+                            </ul>
+                            <hr style="width: 80%;">
+                            <p style=" padding: 10px;">{{ form.visible_fields.8.label }}: {{ form.visible_fields.8 }}</p>
+                        </div>
+                        <div style="width: 30%; height: 350px; background-color: #97ACBE;">
+                            <h1 style="font-family: Manjari; text-align: center; font-size: 35px">Amenities</h1>
+                            <ul>
+                                <li style=" padding: 10px;">{{ form.visible_fields.3.label }}: {{ form.visible_fields.3 }}</li>
+                                <li style=" padding: 10px;">{{ form.visible_fields.4.label }}: {{ form.visible_fields.4 }}</li>
+                                <li style=" padding: 10px;">{{ form.visible_fields.5.label }}: {{ form.visible_fields.5 }}</li>
+                            </ul>                      
+                            <hr style="width: 80%;">
+                            <p style=" padding: 10px;">{{ form.visible_fields.9.label }}: {{ form.visible_fields.9 }}</p>
+                        </div>
+                        <div style="width: 30%; height: 350px; background-color: #97ACBE;">
+                            <h1 style="font-family: Manjari; text-align: center; font-size: 35px">Conditions</h1>
+                            <ul>
+                                <li style=" padding: 10px;">{{ form.visible_fields.6.label }}: {{ form.visible_fields.6 }}</li>
+                                <li style=" padding: 10px;">{{ form.visible_fields.7.label }}: {{ form.visible_fields.7 }}</li>
+                            </ul>           
+                            <hr style="width: 80%;">
+                            <p style=" padding: 10px;">{{ form.visible_fields.10.label }}: {{ form.visible_fields.10 }}</p>
+                        </div>
+                    </div>
+                    <div class="row" style="display: flex; justify-content: space-around; height:500px; width: 100%;">
+                        <input type=submit value=Compute style="background-color: #ffffff; color: #002036; font-family: Manjari; font-size: 17px; width: 150px; height: 70px;"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <hr style="width: 90%;">
+
+    <section id="themes" style="background-color: #ffffff; width:100%; margin: 0 auto; height:800px;">
+        <h3 style="font-family: Manjari; text-align: center;">Calculated School Neediness Index </h3>
+        <div class = "row" style="display: flex; justify-content: space-around; height:700px; width: 100%;">
+            <div style="width: 45%; height: 250px; background-color: #ffffff">
+                <h2 style="font-family: Manjari; text-align: center;">The Mean of the Index is: {{ mean.final_index__avg }} </h2>
+                    <h2 style="font-family: Manjari; text-align: center;">The Median of the Index is: {{ mean.final_index__avg }}</h2>
+                    <h2 style="font-family: Manjari; text-align: center;">The Standard Deviation of the Index is: {{ mean.final_index__avg }}</h2>
+                </div>
+            <div id = 'sni_map' style="width: 45%; height: 700px;"></div>
+            <script>
+                    var map = L.map('sni_map').setView([12.8797, 121.7740], 6);
+            
+                    var CartoDB_Positron = L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                        subdomains: 'abcd',
+                        maxZoom: 18
+                    });
+                    
+                    map.addLayer(CartoDB_Positron);
+            
+                    var data = {
+                        "type": "FeatureCollection",
+                        "features": [
+                        {% for obj in top %}
+                        {
+                            "type": "Feature",
+                            "properties": {
+                                "School_Name": "{{ obj.school_nam }}",
+                                "School_ID": "{{ obj.school_id }}",
+                                "Region": "{{ ob.region }}",
+                                "Division": "{{ obj.division }}",
+                                "District": "{{ obj.district }}",
+                                "SchoolNeedinessIndex": "{{ obj.final_index }}"
+            
+                            },
+                            "geometry": {
+                                "type": "Point",
+                                "coordinates": [{{ obj.longitude }}, {{ obj.latitude }}]
+                            }
+                        } {% if not loop.last %},{% endif %}
+                        {% endfor %}
+                        ]
+                    };
+            
+                        var dataLayer = L.geoJson(data, {
+                                onEachFeature: function(feature, layer) {
+                                    layer.bindPopup("<dl><dt><b>School Properties</b></dt>" +
+                                "<dt>" + "School Name: " + feature.properties.School_Name + "</dt>" +
+                                "<dt>" + "Schoool ID: " + feature.properties.School_ID + "</dt>" + 
+                                "<dt>" + "Region: " + feature.properties.Region + "</dt>" +
+                                "<dt>" + "District: " + feature.properties.District + "</dt>" +
+                                "<dt>" + "School Neediness Index: " + feature.properties.SchoolNeedinessIndex + "</dt>" +
+            
+                                "</dl>");
+                                }
+                            });
+            
+                    map.addLayer(dataLayer);
+            
+                </script>
+        </div>
+    </section>
+
+
+
+<footer style="background-color: #002036; height:250px; height: 250px; padding: 10px; display: flex; flex-direction: column; justify-content: space-around; width: 100%;">
+        <div style=" margin-left: auto; margin-right: auto;">
+            <a href="https://github.com/heatherbaier/cms_django" style="color: white; padding: 20px 30px;"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
+            <a href="https://www.youtube.com/user/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-youtube fa-3x" aria-hidden="true"></i></a>
+            <a href="https://twitter.com/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
+            <a href="https://www.facebook.com/CheckMySchool/" style="color: white; padding: 20px 30px;"><i class="fa fa-facebook fa-3x" aria-hidden="true"></i></a>
+            <a href="info@checkmyschool.org" style="color: white; padding: 20px 30px;"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
+        </div>
+        <h4 style="color:white; font-family: Manjari; margin-left: auto; margin-right: auto; text-align: center;">
+            ANSA-EAP Satellite Office, 3rd Floor Mansi Bldg, 337 Katipunan Avenue Loyola <br>
+            Heights, Quezon City, Metro Manila Philippines 1108
+        </h4>
+    </footer>
+
+</body>
+
+</html>

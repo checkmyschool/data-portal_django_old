@@ -1,0 +1,321 @@
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <title>CheckMySchool Data Portal</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Bitter|Lobster|Manjari|Schoolbell" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.3/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.3/dist/leaflet.js"></script>
+    <script src="https://code.highcharts.com/highcharts.src.js"></script>   
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+</head>
+
+
+
+<body>
+
+    <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh;">
+        <a href="https://www.checkmyschool.org"><img src="{% static "myapp/CMS Logo hi res.jpg" %}" style="float: left;" width="315vh", height="100vh"></a>
+        <ul style="height: 100%; display: flex; justify-content: flex-end; align-items: center; font-family: Manjari; height: 10vh;">
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/" style="color: #002036; text-decoration: none; font-size: 20px;">Home</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/about/" style="color: #002036; text-decoration: none; font-size: 20px;">About</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/schools_list/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Profiles</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/full_map/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Map</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/IndexCalculator/"  style="color: #002036; text-decoration: none; font-size: 20px;">SNI Calculator</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/OpenData/"  style="color: #002036; text-decoration: none; font-size: 20px;" >Data</a></li>
+        </ul>
+    </section>
+
+
+
+<section style="background-color: #ffffff; height: 600px;">
+    <div style="margin-left: 2vh; height: 91vh; background-color: #ffffff; width:27%;  float:left">
+        <h1> </h1>
+        <h3 style="text-align: left; margin-left: 1vh; font-size: 20px; font-weight: bold; font-family: Manjari;">Region</h3>
+        <hr style="width:95%; margin-left: 1vh;">
+        <form action="" method="post">
+            {% csrf_token %}
+            <h3 style="text-align: left; margin-left: 3vh; padding:1vh; font-size: 15px; font-weight: normal; font-family: Manjari;">{{ form.visible_fields.0.label }}: {{ form.visible_fields.0 }}</h3>
+            <input type="submit" value="Submit" style = 'font-family: Manjari; margin-left: 4vh;'>
+        </form>
+
+        <h3 style="text-align: left; margin-left: 1vh; font-size: 20px; font-weight: bold; font-family: Manjari;">Download Data</h3>
+        <hr style="width:95%; margin-left: 1vh;">
+
+        <a href="csvDownload/"><div style='background-color: #00365a; color:#ffffff; width: 100px; height: 30px; margin-left: 3vh'><p style="font-family: Manjari; margin-top: 10px; margin-left: 20px;">Download</p></div></a>
+
+
+        <!-- <h3 style="text-align: left; margin-left: 1vh; font-size: 20px; font-weight: bold; font-family: Manjari;">Special Education Fund Details</h3>
+        <hr style="width:95%; margin-left: 1vh;">
+
+        <p>The Special Edcation Fund was established for the following purposes:</p>
+        <ul style="text-align: justify;">
+            <li>the organization and operation of such number of extension classes as may be needed to accommodate all children of school age desiring to enter Grade I, including the creation of positions of classroom teachers, head teachers and principals for such extension classes, which shall not exceed the standard requirements of the Bureau of Public Schools: Provided, That under equal circumstances, in the opening of such extension classes, priority shall be given to the needs of barrios;</li>
+            <li>the programming of the construction and repair of elementary school buildings, acquisition of sites, and the construction and repair of workshops and similar buildings and accessories thereof to house laboratory, technical and similar equipment and apparatus needed by public schools offering practical arts, home economics and vocational courses, giving priority to elementary schools on the basis of the actual needs and total requirements of the country: Provided, That the construction and repair shall be undertaken by the Bureau of Public Works in coordination with the Bureau of Public Schools or Bureau of Vocational Education, as the case may be, and the local school board: Provided, further, That in cases where the cost of the school project does not exceed ten thousand pesos the construction and repair may be undertaken by negotiated contract by the Parents-Teachers Association or by the barrio councils concerned under the supervision and direction of the Bureau of Public Works;</li>
+            <li>the payment and adjustment of salaries of public school teachers under and by virtue of Republic Act Numbered Five thousand one hundred sixty-eight and all the benefits in favor of public school teachers provided under Republic Act Numbered Four thousand six hundred seventy;</li>
+            <li>the preparation, printing and/or purchase of textbooks, teachers' guides, forms and pamphlets, approved in accordance with existing laws to be used in all public schools;</li>
+            <li>the purchase and/or improvement, repair and refurbishing of machinery, laboratory, technical and similar equipment and apparatus, including spare parts needed by the Bureau of Vocational Education and secondary schools offering vocational courses;</li>
+            <li>the establishment of a printing plant to be used exclusively for the printing needs of the Department of Education and the improvement of regional printing plants in the vocati onal schools;</li>
+            <li>the purchase of teaching materials such as workbooks, atlases, flip charts, science and mathematics teaching aids, and simple laboratory devices for elementary and secondary classes;</li>
+            <li>the implementation of the existing program for citizenship development in barrio high schools, folk schools and adult education classes;</li>
+            <li>the undertaking of education research, including that of the Board of National Education;</li>
+            <li>the granting of government scholarships to poor but deserving students under Republic Act Numbered Four thousand ninety; and</li>
+            <li>the promotion of physical education, such as athletic meets.</li>
+        </ul> -->
+        <h3 style="text-align: left; margin-left: 1vh; font-size: 20px; font-weight: bold; font-family: Manjari;"> Metadata </h3>
+        <hr style="width:90%; margin-left: 1vh;">
+        <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Source:</b> <br> Philippine Department of Education <br> Enhanced Basic Education Information System </b></p>
+        <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Date Range:</b> <br> SY 2009 - 2016 </p>
+        <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Citation:</b> <br> ???? </p>
+        <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Number of Rows:</b> <br> ???? </p>
+        <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Date Last Updated:</b> <br> September 16, 2019 </p>
+        <p style="text-align: left; margin-left: 4vh; padding:1vh; font-family: Manjari;"> <b>Output Format:</b> <br> CSV </p>    
+    </div>
+
+    <div style="width: 60%; height: 500px; float: right; margin-right: 5vh;">
+        <div id='container' style="height: 475px; width:100%;"></div>   
+        <hr>   
+    </div>
+
+</section>
+
+<section style="height: 650px;">
+    <div style="width: 60%; height: 550px; float: right; margin-right: 5vh; padding-bottom: 0px;">     
+        <div id='sniColumn' style="height: 500px; width:100%;"></div>      
+    </div>
+    <hr>
+</section>
+
+<section style="height: 700px;">
+    <div style="width: 60%; height: 650px; float: right; margin-right: 5vh; background-color: #ffffff;">
+        <div id="pie" style="float: left; width:70%; height:500px; margin-top: 5vh"></div>
+        <script>
+            Highcharts.chart('pie', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: 'Special Education Fund Distribution'
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: true,
+                            format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+                        }
+                    }
+                },
+                series: [{
+                    name: 'Gender',
+                    colorByPoint: true,
+                    data: [{
+                        name: 'Elementary School',
+                        y: {{ es_sum.elementary_school__sum }},
+                        sliced: true,
+                        selected: true,
+                        color: "#DDA63A"
+                    }, {
+                        name: 'Secondary School',
+                        y: {{ ss_sum.secondary_school__sum }},
+                        color: "#4C9F38"
+                    }, {
+                        name: 'University College Education School',
+                        y: {{ uces_sum.university_college_education_school__sum }},
+                        color: "#C5192D"
+                    }, {
+                        name: 'Vocational Technical School',
+                        y: {{ vct_sum.vocational_technical_school__sum }},
+                        color: "#26BDE2"
+                    }, {
+                        name: 'Adult Education',
+                        y: {{ ae_sum.adult_education__sum }},
+                        color: "#A21942"
+                    }, {
+                        name: 'Education Subsidiary Service',
+                        y: {{ ess_sum.education_subsidiary_services__sum }},
+                        color: "#FD6925"
+                    }, {
+                        name: 'Manpower Development Mangement Tool',
+                        y: {{ mdmt_sum.manpower_development_mangement_tool__sum }},
+                        color: "#DD1367"
+                    }, {
+                        name: 'Maintenance of Sports Center Athletic Fields Playground',
+                        y: {{ rec_sum.maintenance_of_sports_center_athletic_fields_playground__sum }},
+                        color: "#FD9D24"
+                    }]
+                }]
+            });
+
+
+            
+        </script>
+    </div>
+</section>
+
+<script>
+
+Highcharts.chart('container', {
+
+    title: {
+        text: 'Funds Allocated per Sector (2009 - 2016)'
+    },
+
+    subtitle: {
+        text: 'Source: thesolarfoundation.com'
+    },
+    xaxis: {
+        categories: ['2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016']
+    },
+
+    yAxis: {
+        title: {
+            text: 'Number of Employees'
+        }
+    },
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        series: {
+            label: {
+                connectorAllowed: false
+            },
+            pointStart: 2010
+        }
+    },
+
+    series: [
+    {
+        name: 'Elementary School',
+        data: [{{ response.0.elementary_school}}, {{ response.1.elementary_school}}, {{ response.2.elementary_school}}, {{ response.3.elementary_school}}, {{ response.4.elementary_school}}, {{ response.5.elementary_school}}, {{ response.6.elementary_school}}, {{ response.7.elementary_school}}]
+    },
+    {
+        name: 'Secondary School',
+        data: [{{ response.0.secondary_school}}, {{ response.1.secondary_school}}, {{ response.2.secondary_school}}, {{ response.3.secondary_school}}, {{ response.4.secondary_school}}, {{ response.5.secondary_school}}, {{ response.6.secondary_school}}, {{ response.7.secondary_school}}]
+    },
+    {
+        name: 'University College Education School',
+        data: [{{ response.0.university_college_education_school}}, {{ response.1.university_college_education_school}}, {{ response.2.university_college_education_school}}, {{ response.3.university_college_education_school}}, {{ response.4.university_college_education_school}}, {{ response.5.university_college_education_school}}, {{ response.6.university_college_education_school}}, {{ response.7.university_college_education_school}}]
+    },
+    {
+        name: 'vocational_technical_school',
+        data: [{{ response.0.vocational_technical_school}}, {{ response.1.vocational_technical_school}}, {{ response.2.vocational_technical_school}}, {{ response.3.vocational_technical_school}}, {{ response.4.vocational_technical_school}}, {{ response.5.vocational_technical_school}}, {{ response.6.vocational_technical_school}}, {{ response.7.vocational_technical_school}}]
+    },
+    {
+        name: 'adult_education',
+        data: [{{ response.0.adult_education}}, {{ response.1.adult_education}}, {{ response.2.adult_education}}, {{ response.3.adult_education}}, {{ response.4.adult_education}}, {{ response.5.adult_education}}, {{ response.6.adult_education}}, {{ response.7.adult_education}}]
+    },
+    {
+        name: 'education_subsidiary_services',
+        data: [{{ response.0.education_subsidiary_services}}, {{ response.1.education_subsidiary_services}}, {{ response.2.education_subsidiary_services}}, {{ response.3.education_subsidiary_services}}, {{ response.4.education_subsidiary_services}}, {{ response.5.education_subsidiary_services}}, {{ response.6.education_subsidiary_services}}, {{ response.7.education_subsidiary_services}}]
+    },
+    {
+        name: 'manpower_development_mangement_tool',
+        data: [{{ response.0.manpower_development_mangement_tool}}, {{ response.1.manpower_development_mangement_tool}}, {{ response.2.manpower_development_mangement_tool}}, {{ response.3.manpower_development_mangement_tool}}, {{ response.4.manpower_development_mangement_tool}}, {{ response.5.manpower_development_mangement_tool}}, {{ response.6.manpower_development_mangement_tool}}, {{ response.7.manpower_development_mangement_tool}}]
+    },
+    {
+        name: 'maintenance_of_sports_center_athletic_fields_playground',
+        data: [{{ response.0.maintenance_of_sports_center_athletic_fields_playground}}, {{ response.1.maintenance_of_sports_center_athletic_fields_playground}}, {{ response.2.maintenance_of_sports_center_athletic_fields_playground}}, {{ response.3.maintenance_of_sports_center_athletic_fields_playground}}, {{ response.4.maintenance_of_sports_center_athletic_fields_playground}}, {{ response.5.maintenance_of_sports_center_athletic_fields_playground}}, {{ response.6.maintenance_of_sports_center_athletic_fields_playground}}, {{ response.7.maintenance_of_sports_center_athletic_fields_playground}}]
+    },
+    {
+        name: 'loan_amortization_domestic_debt_service_principal_field',
+        data: [{{ response.0.loan_amortization_domestic_debt_service_principal_field}}, {{ response.1.loan_amortization_domestic_debt_service_principal_field}}, {{ response.2.loan_amortization_domestic_debt_service_principal_field}}, {{ response.3.loan_amortization_domestic_debt_service_principal_field}}, {{ response.4.loan_amortization_domestic_debt_service_principal_field}}, {{ response.5.loan_amortization_domestic_debt_service_principal_field}}, {{ response.6.loan_amortization_domestic_debt_service_principal_field}}, {{ response.7.loan_amortization_domestic_debt_service_principal_field}}]
+    },
+    {
+        name: 'interest_payment_domestic_debt_service_interest_field',
+        data: [{{ response.0.interest_payment_domestic_debt_service_interest_field}}, {{ response.1.interest_payment_domestic_debt_service_interest_field}}, {{ response.2.interest_payment_domestic_debt_service_interest_field}}, {{ response.3.interest_payment_domestic_debt_service_interest_field}}, {{ response.4.interest_payment_domestic_debt_service_interest_field}}, {{ response.5.interest_payment_domestic_debt_service_interest_field}}, {{ response.6.interest_payment_domestic_debt_service_interest_field}}, {{ response.7.interest_payment_domestic_debt_service_interest_field}}]
+    }
+    ],
+
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+
+});
+
+</script>
+
+<script>
+
+Highcharts.chart('sniColumn', {
+    chart: {
+        type: 'column'
+    },
+    title: {
+        text: 'Special Education Fund Distribution'
+    },
+    xAxis: {
+        categories: ['Elementary School', 'Secondary School', 'University College Education School', 'Vocational Technical School', 'Adult Education',
+        'Education Subsidiary Services', 'Manpower Development Management_tool', 'Maintenance of Sports Center Athletic Fields Playground'],
+        title: {
+            text: 'Category'
+        }
+    },
+    yAxis: {
+        min: 0,
+        title: {
+            text: 'Score',
+            align: 'middle'
+        },
+        labels: {
+            overflow: 'justify'
+        }
+    },
+    plotOptions: {
+        bar: {
+            dataLabels: {
+                enabled: true
+            }
+        }
+    },
+    credits: {
+        enabled: false
+    },
+    series: [{
+        name: 'Category',
+        data: [{{ es_sum.elementary_school__sum }}, {{ ss_sum.secondary_school__sum }}, {{ uces_sum.university_college_education_school__sum }}, {{ vct_sum.vocational_technical_school__sum }}, {{ ae_sum.adult_education__sum }}, {{ ess_sum.education_subsidiary_services__sum }}, {{ mdmt_sum.manpower_development_mangement_tool__sum }}, {{ rec_sum.maintenance_of_sports_center_athletic_fields_playground__sum }}]
+    }]
+});
+
+</script>
+
+<footer style="background-color: #002036; height:250px; height: 250px; padding: 10px; display: flex; flex-direction: column; justify-content: space-around; width: 100%;">
+    <div style=" margin-left: auto; margin-right: auto;">
+        <a href="https://github.com/heatherbaier/cms_django" style="color: white; padding: 20px 30px;"><i class="fa fa-github fa-3x" aria-hidden="true"></i></a>
+        <a href="https://www.youtube.com/user/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-youtube fa-3x" aria-hidden="true"></i></a>
+        <a href="https://twitter.com/onlinecms" style="color: white; padding: 20px 30px;"><i class="fa fa-twitter fa-3x" aria-hidden="true"></i></a>
+        <a href="https://www.facebook.com/CheckMySchool/" style="color: white; padding: 20px 30px;"><i class="fa fa-facebook fa-3x" aria-hidden="true"></i></a>
+        <a href="info@checkmyschool.org" style="color: white; padding: 20px 30px;"><i class="fa fa-envelope fa-3x" aria-hidden="true"></i></a>
+    </div>
+    <h4 style="color:white; font-family: Manjari; margin-left: auto; margin-right: auto; text-align: center;">
+        ANSA-EAP Satellite Office, 3rd Floor Mansi Bldg, 337 Katipunan Avenue Loyola <br>
+        Heights, Quezon City, Metro Manila Philippines 1108
+    </h4>
+</footer>
+
+</body>
+
