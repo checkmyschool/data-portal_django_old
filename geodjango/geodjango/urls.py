@@ -25,8 +25,12 @@ from geo_cms.views import regions_view, regions_shp_view, districts_view, distri
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^$', views.HomePageView.as_view()),
+    # url(r'^$', views.HomePageView.as_view()),
     url(r'^about/$', views.AboutPageView.as_view()),
+    url(r'^$', views.HomePageView),
+    url(r'^sni_method/$', views.SNIMethodView.as_view()),
+
+
     path('schools_list/', views.school_list2),
     path('schools_list/<str:school_name>/<str:region>/<str:district>/', views.SchoolProfileView),
     path('regions_map/', views.RegionsMapView),

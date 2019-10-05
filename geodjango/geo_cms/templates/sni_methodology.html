@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    {% load staticfiles %}
+    <meta charset="utf-8">
+    <title>CheckMySchool Data Portal</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Bitter|Lobster|Manjari|Schoolbell" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/simple-parallax-js@5.0.2/dist/simpleParallax.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/ScrollMagic.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Bitter|Lobster|Manjari|Schoolbell" rel="stylesheet">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
+</head>
+
+<style>
+    h1,h2,h3,h3,h4,h5,h6 {
+        font-family: Manjari;
+    }
+
+
+
+    /* Rizal Performing Arts */
+    .ml5 {
+  position: relative;
+  font-weight: 300;
+  font-size: 2.5em;
+  color: #402d2d;
+}
+
+.ml5 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.1em;
+  padding-right: 0.05em;
+  padding-bottom: 0.15em;
+  line-height: 1em;
+}
+
+.ml5 .line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 3px;
+  width: 100%;
+  background-color: #402d2d;
+  transform-origin: 0.5 0;
+}
+
+.ml5 .ampersand {
+  font-family: Baskerville, "EB Garamond", serif;
+  font-style: italic;
+  font-weight: 400;
+  width: 1em;
+  margin-right: -0.1em;
+  margin-left: -0.1em;
+}
+
+.ml5 .letters {
+  display: inline-block;
+  opacity: 0;
+}
+
+
+
+    /* Nueva Valencia Performing Arts */
+.ml0 {
+  position: relative;
+  font-weight: 300;
+  font-size: 3.0em;
+  color: #402d2d;
+}
+
+.ml0 .text-wrapper {
+  position: relative;
+  display: inline-block;
+  padding-top: 0.1em;
+  padding-right: 0.05em;
+  padding-bottom: 0.15em;
+  line-height: 1em;
+}
+
+.ml0 .line {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  height: 3px;
+  width: 100%;
+  background-color: #402d2d;
+  transform-origin: 0.5 0;
+}
+
+.ml0 .ampersand {
+  font-family: Baskerville, "EB Garamond", serif;
+  font-style: italic;
+  font-weight: 400;
+  width: 1em;
+  margin-right: -0.1em;
+  margin-left: -0.1em;
+}
+
+.ml0 .letters {
+  display: inline-block;
+  opacity: 0;
+}
+
+hr.style18 { 
+  height: 30px; 
+  border-style: solid; 
+  border-color: #8c8b8b; 
+  border-width: 1px 0 0 0; 
+  border-radius: 20px; 
+} 
+hr.style18:before { 
+  display: block; 
+  content: ""; 
+  height: 30px; 
+  margin-top: -31px; 
+  border-style: solid; 
+  border-color: #8c8b8b; 
+  border-width: 0 0 1px 0; 
+  border-radius: 20px; 
+}
+
+</style>
+            
+<body style="background-color: #ffffff;">
+
+    <section style="background-color: #ffffff;  margin: 0 auto; width: 100%; background: #ffffff; height: 12vh;">
+        <a href="https://www.checkmyschool.org"><img src="{% static "myapp/CMS Logo hi res.jpg" %}" style="float: left;" width="315vh", height="100vh"></a>
+        <ul style="height: 100%; display: flex; justify-content: flex-end; align-items: center; font-family: Manjari; height: 10vh;">
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/" style="color: #002036; text-decoration: none; font-size: 20px;">Home</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/about/" style="color: #002036; text-decoration: none; font-size: 20px;">About</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/schools_list/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Profiles</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/full_map/"  style="color: #002036; text-decoration: none; font-size: 20px;">School Map</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/IndexCalculator/"  style="color: #002036; text-decoration: none; font-size: 20px;">SNI Calculator</a></li>
+            <li style="display: inline-block; width: 100px; padding: 10px; text-align: center;"><a href="/OpenData/"  style="color: #002036; text-decoration: none; font-size: 20px;" >Data</a></li>
+        </ul>
+    </section>
+
+
+    <section>
+        <h3>The School Neediness Index began as an idea for attempting to identify how vulnerable schools were throughout the Philippines. CheckMySchool wanted 
+            to know where they should focus their resources and establish stronger volunteer networks.</h3>
+    </section>
+
+    <section>
+        <h3>So, CheckMySchool traveled to 5 schools in Guimaras and Rizel to talk to school personnel about the conditions in their classrooms.</h3>
+    </section>
+
+    <hr class="style18">
+
+    <h1 style="font-family: Schoolbell; text-align: center; font-size: 50px;">Rizal Performing Arts School & <br> the Student-Classroom and Student-Teacher Ratios</h1>
+
+    <section>
+        <h3>We started with ~Rizal Arts school~ where we met with Principal ~~. She told us about the condemned building that forced her students to overcrowd 
+            other classrooms, pushing the student-classroom ratios above the minimum threshold defined by the Department of Education.</h3>
+    </section>
+
+
+
+
+    <section id="themes" stlye= "height: 1500px; width: 100%">
+
+        <div style="background-color: #ffffff; width:70%; margin: 0 auto; float:right; height: 1500px">
+            <div class = "row" style="display: flex; justify-content: space-around; height:700px; width: 100%;">
+                <div style="width: 45%; height: 250px; color: #ffffff">
+                        <img class="thumbnail" src="{% static 'myapp/rizal1.png' %}" width="100%", height="550px">
+                </div>
+                <div style="width: 45%; height: 250px; color: #ffffff">
+                        <img class="thumbnail" src="{% static 'myapp/rizal2.png' %}" width="100%", height="550px">
+                </div>
+
+            </div>
+
+            <div class = "row" style="display: flex; justify-content: space-around; height:700px; width: 100%;">
+                    <div style="width: 45%; height: 250px; color: #ffffff">
+                            <img class="thumbnail" src="{% static 'myapp/rizal1.png' %}" width="100%", height="550px">
+                    </div>
+                    <div style="width: 45%; height: 250px; color: #ffffff">
+                            <img class="thumbnail" src="{% static 'myapp/rizal2.png' %}" width="100%", height="550px">
+                    </div>
+            </div>
+        </div>
+
+        <div style="background-color: #ffffff; width:30%; margin: 0 auto; float:left">
+            <div class = "row" style="display: flex; justify-content: space-around; height:1500px; width: 100%;">
+                <div style="width: 100%; height: 250px; color: black; margin-top: 525px">
+                    <h2 style="font-family: Manjari; margin-left: 50px; text-align: justify">However, ~Principal~ also told us about efforts by student's parents and community memebrs to use extra materials that would perviusly have been 
+                        thrown away to create art and tools for the school.</h2>                        
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <hr class="style18">
+
+    </section>
+
+    <section style="text-align: center">
+        <h2>We then went back to CheckMySchool headquarters and considered everything ~Principal~ had told us. We raised some pretty important questions:</h2>
+        <ul>
+            <li><h2>How did school resources impact student's ability to learn?</h2></li>
+            <li><h2>How did factors outside of the classroom like remoteness and a student's socioeconomic status hinder their ability to come to school?</h2></li>
+            <li><h2>Can we reliably rank each school's vulnerability based on its access to resources?</h2></li>
+        </ul>
+    </section>
+
+
+    <section>
+        <h2>To answer these questions, we flew to Guimaras to meet with more schools and coordiante with local volunteers...(names here!)...</h2>
+    </section>
+
+    <br><br>
+
+    <hr class="style18">
+
+    <h1 style="font-family: Schoolbell; text-align: center; font-size: 50px">Cabalagnan Elementary School & <br> the Remoteness Index and socioeconomic barriers to school access</h1>
+
+    <br><br>
+
+    <section id="themes" style="background-color: #ffffff; width:100%; margin: 0 auto; height:650px;">
+            <div class = "row" style="display: flex; justify-content: space-around; height:700px; width: 100%;">
+                <div style="width: 30%; height: 250px; color: #ffffff">
+                        <img class="thumbnail" src="{% static 'myapp/cabalagnan2.png' %}" width="100%", height="550px">
+                </div>
+                <div style="width: 30%; height: 250px; color: #ffffff">
+                        <img class="thumbnail" src="{% static 'myapp/cabalagnan1.png' %}" width="100%", height="550px">
+                </div>
+                <div style="width: 30%; height: 250px; color: black">
+                        <h2 style="text-align: justify; font-family: Manjari;">Our first stop in Guimaras was Cabalagnan Elementary School (but not before the CheckMySchool team stopped for a famous mango pizza from Pitstop restaurant). <br><br>
+                            At Cabalagnan we met with ~Principal~ and other school personnel. Here, we were introduced to the second verainel inout School Neediness Index: remoteness. Cabalagnagn 
+                            faced a challenge quite common among schools on smaler Philippine islands - many students had to cross a body of water in order to reach their school. This mean that
+                            during rainy sesason when monsoons and typhoons are common, attendance at Cabalagnan dropped drastically.</h2>
+                </div>
+            </div>
+        </section>
+
+        <script>
+                var images = document.querySelectorAll('img');
+                new simpleParallax(images, {
+                    scale: 2,
+                    overflow: false,
+                    orientation: 'up'
+                });
+            </script>
+
+    <section>
+        <h3 style="text-align: justify; margin-left: 40px; margin-right: 40px">Cabalagnan teachers and community members had a solution though - an 'Adopt-a-Student' program. During bad weather, in order to prevent students from either 
+            missing school or having to cross hazardous terrain, teachers or fellow student's families would adopt a student and house them on the isalnd until the bad weather had passed.</h3>
+        </section>
+
+
+    <!-- <h1 style="font-family: Schoolbell;">Sebario Elementary School & Access to Electricity</h1> -->
+
+    <hr class="style18">
+
+    <h1 style="font-family: Schoolbell; text-align: center; font-size: 50px">Sebario Elementary School & <br> Access to Electricity</h1>
+
+
+    <!-- <h1 style="font-family: Schoolbell;">Nueva Valencia High School & Access to Internet</h1> -->
+
+    <hr class="style18">
+
+    <h1 style="font-family: Schoolbell; text-align: center; font-size: 50px">Nueva Valencia High School & <br> Access to Internet</h1>
+
+
+    <!-- <h1 style="font-family: Schoolbell;">Salvación Elementary School & Access to Water</h1> -->
+
+    <hr class="style18">
+
+    <h1 style="font-family: Schoolbell; text-align: center; font-size: 50px">Salvación Elementary School & Access to Water</h1>
+
+
+
+
+<!-- <section style="height:300px">
+    <h1 class="ml0">
+        <span class="text-wrapper">
+            <span class="line line1"></span>
+            <span class="letters letters-left">Nueva Valencia High School</span>
+            <span class="letters ampersand">&amp;</span>
+            <span class="letters letters-right">Access to Internet</span>
+            <span class="line line2"></span>
+        </span>
+    </h1>
+</section>
+
+      <script>
+          anime.timeline({loop: true})
+  .add({
+    targets: '.ml0 .line',
+    opacity: [0.5,1],
+    scaleX: [0, 1],
+    easing: "easeInOutExpo",
+    duration: 700
+  }).add({
+    targets: '.ml0 .line',
+    duration: 600,
+    easing: "easeOutExpo",
+    translateY: (el, i) => (-0.625 + 0.625*2*i) + "em"
+  }).add({
+    targets: '.ml0 .ampersand',
+    opacity: [0,1],
+    scaleY: [0.5, 1],
+    easing: "easeOutExpo",
+    duration: 600,
+    offset: '-=600'
+  }).add({
+    targets: '.ml0 .letters-left',
+    opacity: [0,1],
+    translateX: ["0.5em", 0],
+    easing: "easeOutExpo",
+    duration: 600,
+    offset: '-=300'
+  }).add({
+    targets: '.ml0 .letters-right',
+    opacity: [0,1],
+    translateX: ["-0.5em", 0],
+    easing: "easeOutExpo",
+    duration: 600,
+    offset: '-=600'
+  }).add({
+    targets: '.ml0',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  });
+      </script> -->
+
+</body>
+
+</html>

@@ -17,12 +17,30 @@ from django.db.models import Avg, Sum
 
 
 
-class HomePageView(TemplateView):
-    def get(self, request, **kwargs):
-        return render(request, 'index.html', context=None)
+# class HomePageView(TemplateView):
+#     def get(self, request, **kwargs):
+#         return render(request, 'index.html', context=None)
+
+
+
+
+def HomePageView(request):
+    year_list = cms2017.objects.values().order_by('school_nam')
+    filtered_qs = SchoolResourcesFilter(request.GET, queryset = year_list)
+
+    return render(
+        request, 
+        'index.html', 
+        {'year_filter': filtered_qs})
+
+
 
 class AboutPageView(TemplateView):
     template_name = "about.html"
+
+
+class SNIMethodView(TemplateView):
+    template_name = 'sni_methodology.html'
 
 
 # class RegionsMapView(TemplateView):
