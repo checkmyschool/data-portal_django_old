@@ -72,7 +72,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'geodjango.wsgi.application'
 
-ALLOWED_HOSTS = ['34.67.43.80']
+ALLOWED_HOSTS = ['*']
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
